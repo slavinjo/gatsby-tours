@@ -6,7 +6,7 @@ import "./layout.css"
 const Layout = ({ children }) => {
   return (
     <main>
-      <Navbar style={{ background: "red" }} />
+      <Navbar />
       {children}
       <Footer />
     </main>
