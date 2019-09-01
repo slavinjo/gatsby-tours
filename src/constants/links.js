@@ -19,4 +19,8 @@ export default [
     path: "/contact",
     text: "contact",
   },
+  {
+    path: "/cart",
+    text: "cart",
+  },
 ]
