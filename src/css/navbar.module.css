@@ -1,4 +1,3 @@
-
 .nav-header {
   display: flex;
   justify-content: space-between;
@@ -25,7 +24,7 @@
   overflow: hidden;
 }
 .show-nav {
-  height: 216px;
+  height: 316px;
 }
 .nav-links a {
   display: block;
