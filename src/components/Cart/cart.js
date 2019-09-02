@@ -12,12 +12,7 @@ const cart = ({ items, isDark, dispatch }) => {
       >
         Dark mode {isDark ? "on" : "off"}
       </button>
-
-if(items){
-  items.map((d,i) => <li key={d.contentful_id}>{d.name}</li>)
-}
-     
-     
+      {items && items.map((d, i) => <li key={d.contentful_id}>{d.name}</li>)}
     </div>
   )
 }

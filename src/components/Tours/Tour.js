@@ -45,6 +45,7 @@ const Tour = ({ tour, cart, dispatch, addTo }) => {
             details
           </AniLink>
 
+          {/*<button className={styles.link} onClick={() => dispatch(addToCart(tour))}>*/}
           <button className={styles.link} onClick={() => addTo(tour)}>
             add to cart
           </button>
