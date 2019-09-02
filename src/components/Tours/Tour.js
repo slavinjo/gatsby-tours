@@ -22,13 +22,11 @@ const getImage = graphql`
   }
 `
 
-class Tour extends Component {
-  
-  render(){
-  
-  const { tour , cart, dispatch} = this.props;
-  const data = null;// useStaticQuery(getImage)
-  const img = null; //data.file.childImageSharp.fluid
+const Tour = ({ tour , cart, dispatch}) => {
+    
+  //const { tour , cart, dispatch} = this.props;
+  const data = useStaticQuery(getImage)
+  const img = data.file.childImageSharp.fluid
   const { name, price, country, days, slug, images } = tour
 
   // let mainImage
@@ -76,7 +74,7 @@ class Tour extends Component {
 }
 
 
-}
+
 
 Tour.propTypes = {
   tour: PropTypes.shape({
