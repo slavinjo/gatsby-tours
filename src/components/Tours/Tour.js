@@ -1,4 +1,4 @@
-import React, {Component} from "react"
+import React, { Component } from "react"
 import Image from "gatsby-image"
 import styles from "../../css/tour.module.css"
 import { FaMap } from "react-icons/fa"
@@ -8,7 +8,6 @@ import { useStaticQuery, graphql } from "gatsby"
 
 import { connect } from "react-redux"
 import { addToCart } from "../../state/cart"
-
 
 const getImage = graphql`
   query {
@@ -22,8 +21,7 @@ const getImage = graphql`
   }
 `
 
-const Tour = ({ tour , cart, dispatch}) => {
-    
+const Tour = ({ tour, cart, dispatch, addTo }) => {
   //const { tour , cart, dispatch} = this.props;
   const data = useStaticQuery(getImage)
   const img = data.file.childImageSharp.fluid
@@ -39,21 +37,18 @@ const Tour = ({ tour , cart, dispatch}) => {
 
   return (
     <article className={styles.tour}>
-      
       <div className={styles.imgContainer}>
         <Image fluid={mainImage} className={styles.img} alt="single tour" />
 
-
         <div className={styles.button_row}>
-                <AniLink fade className={styles.link} to={`/tours/${slug}`}>
-                  details
-                </AniLink>
+          <AniLink fade className={styles.link} to={`/tours/${slug}`}>
+            details
+          </AniLink>
 
-                <button className={styles.link} onClick={() => dispatch(addToCart(tour))}>
-                  add to cart
-                </button>
+          <button className={styles.link} onClick={() => addTo(tour)}>
+            add to cart
+          </button>
         </div>
-
       </div>
 
       <div className={styles.footer}>
@@ -73,9 +68,6 @@ const Tour = ({ tour , cart, dispatch}) => {
   )
 }
 
-
-
-
 Tour.propTypes = {
   tour: PropTypes.shape({
     name: PropTypes.string.isRequired,
@@ -86,12 +78,15 @@ Tour.propTypes = {
   }),
 }
 
-
 const mapStateToProps = state => ({
   cart: state.cart,
 })
 
+const mapDispatchToProps = dispatch => ({
+  addTo: item => dispatch(addToCart(item)),
+})
+
 export default connect(
   mapStateToProps,
-  null
+  mapDispatchToProps
 )(Tour)
