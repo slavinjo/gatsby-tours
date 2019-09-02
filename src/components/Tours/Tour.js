@@ -1,10 +1,14 @@
-import React from "react"
+import React, {Component} from "react"
 import Image from "gatsby-image"
 import styles from "../../css/tour.module.css"
 import { FaMap } from "react-icons/fa"
 import AniLink from "gatsby-plugin-transition-link/AniLink"
 import PropTypes from "prop-types"
 import { useStaticQuery, graphql } from "gatsby"
+
+import { connect } from "react-redux"
+import { addToCart } from "../../state/cart"
+
 
 const getImage = graphql`
   query {
@@ -18,9 +22,13 @@ const getImage = graphql`
   }
 `
 
-const Tour = ({ tour }) => {
-  const data = useStaticQuery(getImage)
-  const img = data.file.childImageSharp.fluid
+class Tour extends Component {
+  
+  render(){
+  
+  const { tour , cart, dispatch} = this.props;
+  const data = null;// useStaticQuery(getImage)
+  const img = null; //data.file.childImageSharp.fluid
   const { name, price, country, days, slug, images } = tour
 
   // let mainImage
@@ -33,12 +41,23 @@ const Tour = ({ tour }) => {
 
   return (
     <article className={styles.tour}>
+      
       <div className={styles.imgContainer}>
         <Image fluid={mainImage} className={styles.img} alt="single tour" />
-        <AniLink fade className={styles.link} to={`/tours/${slug}`}>
-          details
-        </AniLink>
+
+
+        <div className={styles.button_row}>
+                <AniLink fade className={styles.link} to={`/tours/${slug}`}>
+                  details
+                </AniLink>
+
+                <button className={styles.link} onClick={() => dispatch(addToCart(tour))}>
+                  add to cart
+                </button>
+        </div>
+
       </div>
+
       <div className={styles.footer}>
         <h3>{name}</h3>
         <div className={styles.info}>
@@ -56,6 +75,9 @@ const Tour = ({ tour }) => {
   )
 }
 
+
+}
+
 Tour.propTypes = {
   tour: PropTypes.shape({
     name: PropTypes.string.isRequired,
@@ -66,4 +88,12 @@ Tour.propTypes = {
   }),
 }
 
-export default Tour
+
+const mapStateToProps = state => ({
+  cart: state.cart,
+})
+
+export default connect(
+  mapStateToProps,
+  null
+)(Tour)

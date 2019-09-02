@@ -2,22 +2,29 @@ import React from "react"
 import { connect } from "react-redux"
 import { toggleDarkMode } from "../../state/app"
 
-const cart = ({ isDarkMode, dispatch }) => {
+const cart = ({ items, isDark, dispatch }) => {
   return (
     <div>
       <div>Hello from cart</div>
       <button
-        style={isDarkMode ? { background: "black", color: "white" } : null}
-        onClick={() => dispatch(toggleDarkMode(!isDarkMode))}
+        style={isDark ? { background: "black", color: "white" } : null}
+        onClick={() => dispatch(toggleDarkMode(!isDark))}
       >
-        Dark mode {isDarkMode ? "on" : "off"}
+        Dark mode {isDark ? "on" : "off"}
       </button>
+
+if(items){
+  items.map((d,i) => <li key={d.contentful_id}>{d.name}</li>)
+}
+     
+     
     </div>
   )
 }
 
 const mapStateToProps = state => ({
-  isDarkMode: state.app.isDarkMode,
+  isDark: state.app.isDarkMode,
+  items: state.cart.cart,
 })
 
 export default connect(

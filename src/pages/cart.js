@@ -9,7 +9,7 @@ import SEO from "../components/SEO"
 const cart = ({ data }) => {
   return (
     <Layout>
-      <SEO title="Blog" />
+      <SEO title="Cart" />
       <Cart />
     </Layout>
   )
