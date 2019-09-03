@@ -114,7 +114,7 @@ const Card = ({
                 <p className="black-9">
                     Category: {product.name && product.name}
                 </p>
-{/*                <p className="black-8">
+                <p className="black-8">
                     Added on {moment(product.createdAt).fromNow()}
                 </p>
 
@@ -128,7 +128,7 @@ const Card = ({
                 {showRemoveButton(showRemoveProductButton)}
 
                 {showCartUpdateOptions(cartUpdate)}
-                */}
+                
             </div>
         </div>
     );
